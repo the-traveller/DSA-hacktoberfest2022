@@ -1,2 +1,2 @@
-# tic-tac-toe-hacktoberfest2022
-Tic Tac Toe Hacktoberfest2022
+# DSA-hacktoberfest2022
+DSA Hacktoberfest2022
