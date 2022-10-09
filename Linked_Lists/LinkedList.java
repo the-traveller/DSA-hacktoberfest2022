@@ -14,7 +14,7 @@ public class LinkedList {
         // Linked list node
         public Node(char d)
         {
-            data = y;
+            data = d;
             next = null;
         }
     }
