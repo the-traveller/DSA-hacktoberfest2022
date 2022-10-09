@@ -1,5 +1,7 @@
 // Leetcode 155
 
+import Linked_Lists.LinkedList;
+
 class MinStack {
     LinkedList<Long> st = new LinkedList<>();
     long minsf = 0;
