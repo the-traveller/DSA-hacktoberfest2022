@@ -1,72 +1,86 @@
+class Sort 
+{
+    void merge(int arr[], int left, int middle, int right)
+    {
+        int low = middle - left + 1;                   
+        int high = right - middle;                      
+ 
+        int L[] = new int[low];                             
+        int R[] = new int[high];
 
-public class MergeSort {
-    
-    public static void main(String args[]) {	
-		int arr[] = {23, 12, 85, 39, 98, 7, 16, 97, 54};
-
-		System.out.println("Given Array");
-		printArray(arr);
-
-		MergeSort ob = new MergeSort();
-		ob.sort(arr, 0, arr.length - 1);
-
-		System.out.println("\nSorted array");
-		printArray(arr);
-	}
-
-    void merge(int arr[], int low, int mid, int up) {	
-		int n1 = mid - low + 1;
-		int n2 = up - mid;
-
-		int Left[] = new int[n1];
-		int Right[] = new int[n2];
-
-		for (int i = 0; i < n1; ++i)
-			Left[i] = arr[low + i];
-		for (int j = 0; j < n2; ++j)
-			Right[j] = arr[mid + 1 + j];
-
-		int i = 0, j = 0;
-
-		int k = low;
-		while (i < n1 && j < n2) {
-			if (Left[i] <= Right[j]) {
-				arr[k] = Left[i];
-				i++;
-			}
-			else {
-				arr[k] = Right[j];
-				j++;
-			}
-			k++;
-		}
-		while (i < n1) {
-			arr[k] = Left[i];
-			i++;
-			k++;
-		}
-		while (j < n2) {
-			arr[k] = Right[j];
-			j++;
-			k++;
-		}
-	}
-
-	void sort(int arr[], int low, int up) {	
-		if (low < up) {
-			int mid =low + (up-low)/2;
-
-			sort(arr, low, mid);
-			sort(arr, mid + 1, up);
-
-			merge(arr, low, mid, up);
-		}
-	}
+        int i = 0, j = 0;
+ 
+        for (i = 0; i < low; i++)                               
+        {
+            L[i] = arr[left + i];
+        }
+        for (j = 0; j < high; j++)                             
+        {
+            R[j] = arr[middle + 1 + j];
+        }
         
-	static void printArray(int arr[]) {	
-		int n = arr.length;
-		for (int i = 0; i < n; ++i)
-			System.out.print(arr[i] + " ");
-		System.out.println();
-	}	
+ 
+        int k = left;                                          
+        i = 0;                                           
+        j = 0;
+
+        while (i < low && j < high)                     
+        {
+            if (L[i] <= R[j]) 
+            {
+                arr[k] = L[i];
+                i++;
+            }
+            else 
+            {
+                arr[k] = R[j];
+                j++;
+            }
+            k++;
+        }
+ 
+        while (i < low)                          
+        {
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+ 
+        while (j < high)                       
+        {
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
+    }
+ 
+
+    void mergeSort(int arr[], int left, int right)      
+    {
+        int middle;
+        if (left < right) {                             
+            middle = (left + right) / 2;
+ 
+            mergeSort(arr, left, middle);                    
+            mergeSort(arr, middle + 1, right);              
+ 
+            merge(arr, left, middle, right);               
+        }
+    }
+ 
+    void display(int arr[])                
+    {  
+        for (int i=0; i<arr.length; ++i) 
+        {
+            System.out.print(arr[i]+" ");
+        } 
+    } 
+
+    public static void main(String args[])
+    {
+        int arr[] = { 9, 3, 1, 5, 13, 12 };
+        Sort ob = new Sort();
+        ob.mergeSort(arr, 0, arr.length - 1);
+        ob.display(arr);
+    }
 }
